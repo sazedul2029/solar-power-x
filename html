@@ -1,0 +1,1017 @@
+```html
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Power X - প্রফেশনাল সোলার সলিউশন ও গাইড</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbebeb',
+                            100: '#fef3c7',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            900: '#713f12',
+                        },
+                        solarGreen: {
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        darkBg: '#0b0f19',
+                        darkCard: '#111827',
+                        glassBg: 'rgba(17, 24, 39, 0.75)',
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts for Bengali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        .glass {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-light {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #eab308;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-darkBg text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-300 flex flex-col justify-between">
+
+    <!-- Sticky Header Navigation -->
+    <header class="sticky top-0 z-40 w-full glass dark:glass border-b border-gray-200 dark:border-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Branding -->
+                <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="switchTab('articles')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-amber-400 to-emerald-500 flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-950 font-bold text-xl">
+                        <i class="fa-solid font-bold fa-solar-panel"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 bg-clip-text text-transparent">Solar Power X</span>
+                        <span class="text-xs block text-emerald-500 font-medium tracking-wide">ইঞ্জিনিয়ারিং পোর্টাল</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-2 text-sm font-semibold">
+                    <button onclick="switchTab('articles')" id="nav-articles" class="nav-btn px-4 py-2 rounded-lg transition-all text-amber-500 bg-amber-500/10">
+                        <i class="fa-solid fa-newspaper mr-1.5"></i> আর্টিকেলস ও গাইড
+                    </button>
+                    <button onclick="switchTab('calculator')" id="nav-calculator" class="nav-btn px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-amber-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                        <i class="fa-solid fa-calculator mr-1.5"></i> সোলার ক্যালকুলেটর
+                    </button>
+                    <button onclick="switchTab('diagrams')" id="nav-diagrams" class="nav-btn px-4 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-amber-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                        <i class="fa-solid fa-diagram-project mr-1.5"></i> সেফটি ও ডায়াগ্রাম
+                    </button>
+                </nav>
+
+                <!-- Search & Actions -->
+                <div class="flex items-center space-x-2 md:space-x-3">
+                    <!-- Global Search Input -->
+                    <div class="relative hidden sm:block">
+                        <input type="text" id="searchInput" oninput="filterArticles()" placeholder="প্যানেল, ইনভার্টার, কেবল খুঁজুন..." 
+                            class="w-48 lg:w-64 pl-9 pr-3 py-1.5 text-xs rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-amber-500 border border-gray-300 dark:border-gray-700">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-amber-400 hover:bg-gray-300 dark:hover:bg-gray-700 transition">
+                        <i id="themeIcon" class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <!-- Three-dot Menu Icon -->
+                    <button onclick="toggleDevModal()" class="p-2 rounded-lg bg-amber-500/10 text-amber-500 border border-amber-500/20 hover:bg-amber-500/20 transition text-lg" title="ডেভেলপার তথ্য ও সেটিংস">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Bottom Bar -->
+        <div class="md:hidden flex justify-around border-t border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-900/90 py-2 text-xs font-semibold">
+            <button onclick="switchTab('articles')" class="flex flex-col items-center text-amber-500">
+                <i class="fa-solid fa-newspaper text-base mb-1"></i> আর্টিকেলস
+            </button>
+            <button onclick="switchTab('calculator')" class="flex flex-col items-center text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-calculator text-base mb-1"></i> ক্যালকুলেটর
+            </button>
+            <button onclick="switchTab('diagrams')" class="flex flex-col items-center text-gray-500 dark:text-gray-400">
+                <i class="fa-solid fa-diagram-project text-base mb-1"></i> সেফটি গাইড
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative bg-gradient-to-b from-amber-500/10 via-emerald-500/5 to-transparent py-10 md:py-16 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-7 space-y-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/30">
+                        <i class="fa-solid fa-bolt mr-1.5"></i> আধুনিক সোলার টেকনোলজি হাব
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        নবায়নযোগ্য শক্তিতে <span class="bg-gradient-to-r from-amber-400 to-emerald-400 bg-clip-text text-transparent">স্বাবলম্বী হোন</span> প্রফেশনাল গাইডের সাহায্যে
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed">
+                        সোলার প্যানেল সিস্টেম, অন-গ্রিড, অফ-গ্রিড ও হাইব্রিড ইনভার্টার, লিথিয়াম ব্যাটারি, নেট মিটারিং, সঠিক কেবল সাইজিং এবং প্রয়োজনীয় সেফটি প্রটেকশনের সম্পূর্ণ ইঞ্জিনিয়ারিং গাইড।
+                    </p>
+
+                    <!-- Admin Mode Indicator / Toggle Bar -->
+                    <div class="pt-2 flex items-center space-x-3">
+                        <button onclick="toggleAdminPrompt()" id="adminStatusBtn" class="px-4 py-2 rounded-xl text-xs font-semibold border border-dashed border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-amber-500 transition flex items-center">
+                            <i class="fa-solid fa-user-shield mr-2 text-amber-500"></i>
+                            <span id="adminStatusText">অ্যাডমিন মোড (লগইন করুন)</span>
+                        </button>
+                        <button onclick="openAddPostModal()" id="addPostBtn" class="hidden px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-slate-950 transition shadow-lg shadow-amber-500/20 flex items-center">
+                            <i class="fa-solid fa-plus mr-1.5"></i> নতুন আর্টেকেল লিখুন
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Quick Stats Widget -->
+                <div class="md:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="p-4 rounded-2xl glass dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-xl">
+                        <div class="text-amber-500 text-2xl font-bold mb-1" id="statArticles">08</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">প্রফেশনাল গাইডলাইন</div>
+                    </div>
+                    <div class="p-4 rounded-2xl glass dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-xl">
+                        <div class="text-emerald-500 text-2xl font-bold mb-1">100%</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">সঠিক সাইজিং ও ম্যাপিং</div>
+                    </div>
+                    <div class="p-4 rounded-2xl glass dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-xl">
+                        <div class="text-blue-500 text-2xl font-bold mb-1">LiFePO4</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">ব্যাটারি প্রযুক্তি বিশ্লেষণ</div>
+                    </div>
+                    <div class="p-4 rounded-2xl glass dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-xl">
+                        <div class="text-purple-500 text-2xl font-bold mb-1">DC / AC</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400">সম্পূর্ণ প্রটেকশন সিস্টেম</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+        
+        <!-- SECTION 1: ARTICLES TAB -->
+        <div id="tab-articles" class="tab-content block">
+            <!-- Filter Categories -->
+            <div class="flex items-center space-x-2 overflow-x-auto pb-4 mb-6 border-b border-gray-200 dark:border-gray-800 text-xs sm:text-sm">
+                <button onclick="filterCategory('all')" class="cat-btn active px-4 py-2 rounded-xl font-medium bg-amber-500 text-slate-950 whitespace-nowrap shadow-md">সবগুলো</button>
+                <button onclick="filterCategory('panel')" class="cat-btn px-4 py-2 rounded-xl font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-amber-500/20 whitespace-nowrap">সোলার প্যানেল</button>
+                <button onclick="filterCategory('inverter')" class="cat-btn px-4 py-2 rounded-xl font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-amber-500/20 whitespace-nowrap">ইনভার্টার ও চার্জ কন্ট্রোলার</button>
+                <button onclick="filterCategory('battery')" class="cat-btn px-4 py-2 rounded-xl font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-amber-500/20 whitespace-nowrap">ব্যাটারি প্রযুক্তি</button>
+                <button onclick="filterCategory('cable')" class="cat-btn px-4 py-2 rounded-xl font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-amber-500/20 whitespace-nowrap">কেবল ও সাইজিং</button>
+                <button onclick="filterCategory('safety')" class="cat-btn px-4 py-2 rounded-xl font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-amber-500/20 whitespace-nowrap">সেফটি ও প্রটেকশন</button>
+            </div>
+
+            <!-- Articles Cards Grid -->
+            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Articles will be injected by JavaScript -->
+            </div>
+        </div>
+
+        <!-- SECTION 2: SOLAR CALCULATOR TAB -->
+        <div id="tab-calculator" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto bg-white dark:bg-darkCard rounded-3xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800 shadow-2xl">
+                <div class="mb-6 border-b border-gray-200 dark:border-gray-800 pb-4">
+                    <h2 class="text-2xl font-bold text-amber-500 flex items-center">
+                        <i class="fa-solid fa-calculator mr-2.5"></i> প্রফেশনাল সোলার লোড ও ইনভার্টার সাইজিং ক্যালকুলেটর
+                    </h2>
+                    <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        আপনার বাসার প্রয়োজনীয় ডিভাইসের সংখ্যা দিয়ে সোলার প্যানেল, ইনভার্টার, লিথিয়াম/টিউবুলার ব্যাটারি এবং ডিসি কেবলের মাপ বের করুন।
+                    </p>
+                </div>
+
+                <!-- Input Appliance Table -->
+                <div class="space-y-4 mb-8">
+                    <div class="grid grid-cols-12 gap-2 text-xs font-bold text-gray-500 dark:text-gray-400 px-2">
+                        <div class="col-span-5 sm:col-span-4">ডিভাইসের নাম</div>
+                        <div class="col-span-3 sm:col-span-3">ওয়াট (Watt)</div>
+                        <div class="col-span-2 sm:col-span-2">সংখ্যা</div>
+                        <div class="col-span-2 sm:col-span-3">দৈনিক ব্যবহার (ঘণ্টা)</div>
+                    </div>
+
+                    <!-- Appliance Rows -->
+                    <div id="applianceRows" class="space-y-3">
+                        <!-- Dynamic appliance rows -->
+                    </div>
+
+                    <button onclick="addApplianceRow()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20 transition flex items-center">
+                        <i class="fa-solid fa-plus mr-1.5"></i> নতুন ডিভাইস যোগ করুন
+                    </button>
+                </div>
+
+                <!-- Calculate Action Button -->
+                <button onclick="calculateSolarSystem()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-lg shadow-xl shadow-amber-500/20 transition flex items-center justify-center">
+                    <i class="fa-solid fa-bolt mr-2"></i> সিস্টেম সাইজ হিসাব করুন
+                </button>
+
+                <!-- Calculation Results Panel -->
+                <div id="calcResults" class="hidden mt-8 p-6 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-amber-500/30 space-y-6 animate-fade-in">
+                    <h3 class="text-lg font-bold text-amber-500 border-b border-gray-200 dark:border-gray-800 pb-2 flex items-center">
+                        <i class="fa-solid fa-square-poll-vertical mr-2"></i> আপনার সোলার সিস্টেমের প্রস্তাবিত পরিমাপ
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                            <span class="text-xs text-gray-500">মোট রানিং লোড</span>
+                            <div class="text-xl font-extrabold text-amber-500" id="resTotalWatt">0 W</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                            <span class="text-xs text-gray-500">দৈনিক শক্তি চাহিদা</span>
+                            <div class="text-xl font-extrabold text-blue-500" id="resTotalWh">0 Wh / দিন</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                            <span class="text-xs text-gray-500">প্রস্তাবিত সোলার প্যানেল</span>
+                            <div class="text-xl font-extrabold text-emerald-500" id="resSolarPanel">0 Watt</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                            <span class="text-xs text-gray-500">ইনভার্টার ক্যাপাসিটি</span>
+                            <div class="text-xl font-extrabold text-purple-500" id="resInverter">0 kVA</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                            <span class="text-xs text-gray-500">ব্যাটারি স্টোরেজ (LiFePO4/Tubular)</span>
+                            <div class="text-xl font-extrabold text-amber-400" id="resBattery">0 Ah (24V)</div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                            <span class="text-xs text-gray-500">প্রস্তাবিত ডিসি কেবল সাইজ</span>
+                            <div class="text-xl font-extrabold text-rose-500" id="resCable">0 Sq-mm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: SAFETY & DIAGRAMS TAB -->
+        <div id="tab-diagrams" class="tab-content hidden">
+            <div class="space-y-8">
+                <!-- Interactive Wiring Visualizer -->
+                <div class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800 shadow-2xl">
+                    <h2 class="text-2xl font-bold text-amber-500 mb-2">
+                        <i class="fa-solid fa-sitemap mr-2"></i> হাইব্রিড সোলার সিস্টেম কানেকশন ডায়াগ্রাম ও সেফটি আর্কিটেকচার
+                    </h2>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                        একটি আদর্শ ও নিরাপদ সোলার ইন্সটলেশনে কোন স্থানে কোন সেফটি ডিভাইস (SPD, MCB, Fuse, Isolator) বসাতে হয় তার ইন্টারঅ্যাক্টিভ চিত্র।
+                    </p>
+
+                    <!-- Interactive Diagram Container -->
+                    <div class="relative overflow-x-auto p-6 rounded-2xl bg-slate-900 text-white border border-gray-800 min-w-[700px]">
+                        <div class="flex items-center justify-between gap-4">
+                            <!-- Panels -->
+                            <div class="flex flex-col items-center p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 w-36 text-center">
+                                <i class="fa-solid fa-solar-panel text-3xl text-amber-400 mb-2"></i>
+                                <span class="text-xs font-bold">সোলার প্যানেল এরে</span>
+                                <span class="text-[10px] text-gray-400">DC High Voltage</span>
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right text-gray-600"></i>
+
+                            <!-- DC Safety Panel -->
+                            <div class="flex flex-col items-center p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 w-44 text-center">
+                                <i class="fa-solid fa-shield-halved text-2xl text-rose-400 mb-1"></i>
+                                <span class="text-xs font-bold text-rose-400">ডিসি প্রটেকশন বক্স</span>
+                                <span class="text-[10px] text-gray-300 mt-1">DC Fuse + SPD + DC MCB</span>
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right text-gray-600"></i>
+
+                            <!-- Hybrid Inverter -->
+                            <div class="flex flex-col items-center p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 w-40 text-center">
+                                <i class="fa-solid fa-microchip text-3xl text-emerald-400 mb-2"></i>
+                                <span class="text-xs font-bold">স্মার্ট হাইব্রিড ইনভার্টার</span>
+                                <span class="text-[10px] text-gray-400">MPPT Controller Built-in</span>
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right text-gray-600"></i>
+
+                            <!-- AC Protection & Load -->
+                            <div class="flex flex-col items-center p-4 rounded-xl bg-blue-500/10 border border-blue-500/30 w-44 text-center">
+                                <i class="fa-solid fa-house-signal text-2xl text-blue-400 mb-1"></i>
+                                <span class="text-xs font-bold text-blue-400">এসি বিতরণ ও লোড</span>
+                                <span class="text-[10px] text-gray-300 mt-1">AC SPD + MCB + Net Meter</span>
+                            </div>
+                        </div>
+
+                        <!-- Battery & Earthing Connectors -->
+                        <div class="mt-8 pt-6 border-t border-gray-800 flex justify-around">
+                            <div class="flex items-center space-x-3 bg-gray-800/80 px-4 py-2 rounded-xl">
+                                <i class="fa-solid fa-car-battery text-xl text-amber-400"></i>
+                                <div class="text-left">
+                                    <span class="text-xs font-bold block">ব্যাটারি ব্যাংক (LiFePO4)</span>
+                                    <span class="text-[10px] text-gray-400">Connected to Inverter DC Port</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 bg-gray-800/80 px-4 py-2 rounded-xl">
+                                <i class="fa-solid fa-bolt-lightning text-xl text-yellow-400"></i>
+                                <div class="text-left">
+                                    <span class="text-xs font-bold block">আর্থিং ও বজ্রপাত প্রটেকশন</span>
+                                    <span class="text-[10px] text-gray-400">Copper Grounding Pit (< 5 Ohms)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Guidelines Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800">
+                        <h3 class="text-lg font-bold text-rose-500 mb-3 flex items-center">
+                            <i class="fa-solid fa-triangle-exclamation mr-2"></i> ডিসি সর্ট সার্কিট ও এসপিডি সেফটি
+                        </h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                            সোলার সিস্টেমে ডিসি কারেন্ট এসি কারেন্টের চেয়ে বেশি বিপজ্জনক কারণ এটি জিরো-ক্রসিং তৈরি করে না। তাই সাধারণ এসি সার্কিট ব্রেকার ডিসি লাইনে ব্যবহার করা সম্পূর্ণ নিষিদ্ধ। সবসময় ২০০০ ভোল্ট স্পেসিফাইড **DC SPD (Surge Protection Device)** এবং **DC MCB/MCCB** ব্যবহার করতে হবে।
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white dark:bg-darkCard border border-gray-200 dark:border-gray-800">
+                        <h3 class="text-lg font-bold text-emerald-500 mb-3 flex items-center">
+                            <i class="fa-solid fa-plug-circle-check mr-2"></i> সঠিক কেবল নির্বাচন নিয়মাবলী
+                        </h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                            প্যানেল থেকে ইনভার্টার পর্যন্ত দূরত্বের ওপর নির্ভর করে ভোল্টেজ ড্রপ (Voltage Drop) ৩% এর কম রাখতে হবে। ডিসি সাইডে XLPE ইনসুলেটেড UV রেসিস্ট্যান্ট **Solar DC Cable (Double Insulated)** ব্যবহার করতে হবে যাতে সূর্যের তাপে কেবল নষ্ট না হয়।
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- DEVELOPER INFO MODAL (Triggered by Three-dot menu ⋮) -->
+    <div id="devModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl max-w-md w-full p-6 border border-amber-500/30 shadow-2xl relative">
+            <button onclick="toggleDevModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-500 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Profile Info -->
+            <div class="text-center space-y-3">
+                <div class="relative w-24 h-24 mx-auto">
+                    <img src="https://placehold.co/200x200/eab308/0b0f19?text=SPX+Dev" alt="Developer Profile" class="w-24 h-24 rounded-full object-cover border-4 border-amber-500 shadow-xl">
+                    <span class="absolute bottom-1 right-1 bg-emerald-500 p-1.5 rounded-full border-2 border-white dark:border-gray-900"></span>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">মো: ইঞ্জিনিয়ার ডেক্স</h3>
+                    <p class="text-xs text-amber-500 font-semibold">সোলার ইঞ্জিনিয়ারিং ও ফুল-স্ট্যাক ডেভেলপার</p>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 px-4">
+                    Solar Power X প্ল্যাটফর্মের প্রতিষ্ঠাতা ও প্রধান প্রকৌশলী। নবায়নযোগ্য শক্তি ও আধুনিক ওয়েব প্রযুক্তির সমন্বয়ে সবুজ বাংলাদেশ গড়ার লক্ষ্যে কাজ করছি।
+                </p>
+
+                <!-- Badges -->
+                <div class="flex justify-center gap-2 pt-2">
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20">Solar Certified</span>
+                    <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Web Developer</span>
+                </div>
+
+                <!-- Contact & Social Links -->
+                <div class="pt-4 border-t border-gray-200 dark:border-gray-800 space-y-2 text-xs">
+                    <div class="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-300">
+                        <i class="fa-solid fa-envelope text-amber-500"></i>
+                        <span>developer@solarpowerx.com</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-300">
+                        <i class="fa-solid fa-globe text-emerald-500"></i>
+                        <span>www.solarpowerx.com</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-3 pt-3 text-lg">
+                    <a href="#" class="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-amber-500 hover:bg-amber-500 hover:text-slate-950 transition"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-rose-500 hover:bg-rose-500 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- READ ARTICLE MODAL -->
+    <div id="readModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-gray-800 shadow-2xl relative">
+            <button onclick="closeReadModal()" class="sticky top-4 right-4 ml-auto text-gray-400 hover:text-amber-500 text-xl bg-gray-900/80 p-2 rounded-full z-10 block">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="readModalContent" class="p-6 sm:p-8 -mt-8">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN ADD / EDIT ARTICLE MODAL (Owner Only) -->
+    <div id="addPostModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+        <div class="bg-white dark:bg-gray-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-amber-500/30 shadow-2xl relative">
+            <button onclick="closeAddPostModal()" class="absolute top-4 right-4 text-gray-400 hover:text-amber-500 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <h3 class="text-xl font-bold text-amber-500 mb-4 flex items-center" id="modalFormTitle">
+                <i class="fa-solid fa-pen-to-square mr-2"></i> নতুন আর্টেকেল প্রকাশ করুন
+            </h3>
+
+            <form id="articleForm" onsubmit="saveArticle(event)" class="space-y-4 text-xs sm:text-sm">
+                <input type="hidden" id="editArticleId">
+                <div>
+                    <label class="block mb-1 font-semibold text-gray-700 dark:text-gray-300">আর্টিকেল শিরোনাম</label>
+                    <input type="text" id="postTitle" required class="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-amber-500 focus:outline-none" placeholder="যেমন: N-Type TOPCon প্যানেলের সুবিধা...">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block mb-1 font-semibold text-gray-700 dark:text-gray-300">ক্যাটাগরি</label>
+                        <select id="postCategory" class="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                            <option value="panel">সোলার প্যানেল</option>
+                            <option value="inverter">ইনভার্টার ও চার্জ কন্ট্রোলার</option>
+                            <option value="battery">ব্যাটারি প্রযুক্তি</option>
+                            <option value="cable">কেবল ও সাইজিং</option>
+                            <option value="safety">সেফটি ও প্রটেকশন</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block mb-1 font-semibold text-gray-700 dark:text-gray-300">থাম্বনেল ছবি URL</label>
+                        <input type="url" id="postImg" class="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-amber-500 focus:outline-none" placeholder="https://images.unsplash.com/...">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-semibold text-gray-700 dark:text-gray-300">সংক্ষিপ্ত বিবরণ (Short Excerpt)</label>
+                    <textarea id="postExcerpt" rows="2" required class="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-amber-500 focus:outline-none" placeholder="কার্ডে দেখানোর জন্য সংক্ষিপ্ত ২ লাইন..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block mb-1 font-semibold text-gray-700 dark:text-gray-300">সম্পূর্ণ আর্টিকেলের বিস্তারিত বিষয়বস্তু</label>
+                    <textarea id="postContent" rows="6" required class="w-full p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-amber-500 focus:outline-none" placeholder="এখানে বিস্তারিত টেকনিক্যাল ব্যাখ্যা লিখুন..."></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-3">
+                    <button type="button" onclick="closeAddPostModal()" class="px-5 py-2.5 rounded-xl bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300">বাতিল</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold hover:bg-amber-600 transition shadow-lg shadow-amber-500/20">পাবলিশ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="mt-16 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-xs sm:text-sm">
+                <!-- Branding -->
+                <div class="md:col-span-2 space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-solar-panel text-2xl text-amber-500"></i>
+                        <span class="text-xl font-bold bg-gradient-to-r from-amber-400 to-emerald-400 bg-clip-text text-transparent">Solar Power X</span>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 leading-relaxed max-w-sm">
+                        সোলার শক্তি ব্যবহারের সঠিক ও বৈজ্ঞানিক ইঞ্জিনিয়ারিং নির্দেশিকা। আবাসিক ও শিল্পপ্রতিষ্ঠানের জন্য নিরাপদ ও কার্যকর গ্রীন এনার্জি সলিউশন।
+                    </p>
+                </div>
+
+                <!-- Quick Nav -->
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-3 text-amber-500">দ্রুত লিংক</h4>
+                    <ul class="space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><a href="#" onclick="switchTab('articles')" class="hover:text-amber-500">আর্টিকেল ও গাইড</a></li>
+                        <li><a href="#" onclick="switchTab('calculator')" class="hover:text-amber-500">সোলার লোড ক্যালকুলেটর</a></li>
+                        <li><a href="#" onclick="switchTab('diagrams')" class="hover:text-amber-500">ডায়াগ্রাম ও নিরাপত্তা</a></li>
+                    </ul>
+                </div>
+
+                <!-- Developer Quick Info -->
+                <div>
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-3 text-amber-500">ওয়েবসাইট এডমিন</h4>
+                    <p class="text-gray-500 dark:text-gray-400">
+                        ওয়েবসাইটটিতে কেবল এডমিন আর্টিকেল পাবলিশ করতে পারে। সকল সাধারণ ব্যবহারকারী পড়তে ও হিসাব করতে পারবেন।
+                    </p>
+                    <button onclick="toggleDevModal()" class="mt-3 text-amber-500 hover:underline font-semibold text-xs flex items-center">
+                        <i class="fa-solid fa-code mr-1"></i> ডেভলপার তথ্য দেখুন
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; 2026 Solar Power X. সর্বস্বত্ব সংরক্ষিত।</p>
+                <p class="mt-2 sm:mt-0">ডিজাইন ও ডেভেলপমেন্ট: Solar Power X টিম</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Default Core Solar Data Articles
+        const defaultArticles = [
+            {
+                id: "art-1",
+                title: "সোলার প্যানেল প্রযুক্তি: মোনোক্রিস্টালাইন, PERC ও বাইফেসিয়াল গাইড",
+                category: "panel",
+                img: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80",
+                excerpt: "Mono PERC এবং Bifacial প্যানেলের কার্যক্ষমতার পার্থক্য এবং কোনটি বাংলাদেশের আবহাওয়ায় সবচেয়ে ভালো ফলাফল দেবে।",
+                content: `সোলার প্যানেল নির্বাচনের সময় প্রযুক্তির ধরণ জানা অত্যন্ত জরুরি।
+                
+1. **মোনোক্রিস্টালাইন (Monocrystalline):** একক সিলিকন ক্রিস্টাল দিয়ে তৈরি। এর ইফিশিয়েন্সি ১৯%-২২% পর্যন্ত হয়। কম জায়গায় বেশি বিদ্যুৎ তৈরি করতে সক্ষম।
+2. **PERC (Passivated Emitter and Rear Cell):** প্যানেলের পেছনের স্তরে একটি রিফ্লেক্টিভ লেয়ার থাকে যা সূর্যালোক পুনরায় শোষণ করতে সাহায্য করে। এটি অতিরিক্ত গরমেও উচ্চ কার্যক্ষমতা ধরে রাখে।
+3. **বাইফেসিয়াল (Bifacial) প্যানেল:** এটি প্যানেলের সামনের এবং পেছনের দুই পাশ দিয়েই সূর্যালোক থেকে বিদ্যুৎ তৈরি করে। নিচে সাদা ছাদ বা রিফ্লেক্টিভ সারফেস থাকলে এটি ১০-২৫% অতিরিক্ত বিদ্যুৎ উৎপাদন করতে পারে।
+
+**সুপারিশ:** বাংলাদেশের আবাসিক ছাদের জন্য হাফ-কাট (Half-cut) সেলযুক্ত মোনো PERC প্যানেল সবচেয়ে কার্যকর।`,
+                date: "২০২৬-১০-০১",
+                readTime: "৪ মিনিট"
+            },
+            {
+                id: "art-2",
+                title: "অন-গ্রিড, অফ-গ্রিড ও স্মার্ট হাইব্রিড ইনভার্টার নির্বাচন",
+                category: "inverter",
+                img: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80",
+                excerpt: "আপনার সিস্টেমের জন্য অন-গ্রিড, অফ-গ্রিড নাকি হাইব্রিড ইনভার্টার সবচেয়ে উপযোগী? বিস্তারিত তুলনামূলক গাইড।",
+                content: `ইনভার্টার হলো সোলার সিস্টেমের মস্তিষ্ক যা ডিসি (DC) বিদ্যুৎকে এসি (AC) বিদ্যুতে রূপান্তর করে।
+
+1. **অন-গ্রিড ইনভার্টার (Grid-Tied):** জাতীয় গ্রিডের সাথে সরাসরি যুক্ত থাকে। এতে ব্যাটারির প্রয়োজন হয় না। অতিরিক্ত বিদ্যুৎ নেট মিটারিং এর মাধ্যমে গ্রিডে বিক্রি করা যায়। তবে লোডশেডিং এর সময় এটি বন্ধ থাকে।
+2. **অফ-গ্রিড ইনভার্টার (Off-Grid):** পুরোপুরি ব্যাটারির ওপর নির্ভরশীল। জাতীয় গ্রিড সংযোগ না থাকলেও বিদ্যুৎ সরবরাহ অব্যাহত থাকে।
+3. **হাইব্রিড ইনভার্টার (Hybrid):** অন-গ্রিড এবং অফ-গ্রিডের সমন্বয়। এটি গ্রিডে বিদ্যুৎ ব্যাক পাঠাতেও পারে, আবার লোডশেডিং এর সময় ব্যাটারি ব্যাকআপ দেয়।
+
+**এমপিপিটি (MPPT) বনাম পিডব্লিউএম (PWM):** সবসময় MPPT চার্জ কন্ট্রোলার সমৃদ্ধ ইনভার্টার নির্বাচন করুন। এটি PWM এর চেয়ে ৩০% বেশি শক্তি আহরণ করে।`,
+                date: "২০২৬-০৯-২৮",
+                readTime: "৫ মিনিট"
+            },
+            {
+                id: "art-3",
+                title: "লিথিয়াম LiFePO4 ব্যাটারি বনাম টিউবুলার লিড-এসিড",
+                category: "battery",
+                img: "https://images.unsplash.com/photo-1558441719-67450805e226?auto=format&fit=crop&w=600&q=80",
+                excerpt: "কেন সোলার সিস্টেমে লিথিয়াম আইরনে ফসফেট (LiFePO4) ব্যাটারি বর্তমানে সবচেয়ে বেশি জনপ্রিয় ও দীর্ঘস্থায়ী।",
+                content: `সোলার সিস্টেমে ব্যাটারির ভূমিকা অত্যন্ত গুরুত্বপূর্ণ। প্রচলিত টিউবুলার ব্যাটারির তুলনায় লিথিয়াম LiFePO4 ব্যাটারির সুবিধাগুলো নিচে আলোচনা করা হলো:
+
+- **লাইফ সাইকেল:** টিউবুলার ব্যাটারির আয়ু ৩-৫ বছর (১০০০-১৫০০ সাইকেল), অন্যদিকে LiFePO4 ব্যাটারি ১০-১৫ বছর (৪০০০+ সাইকেল) স্থায়ী হয়।
+- **DOD (Depth of Discharge):** লিড এসিড ব্যাটারি ৫০% এর বেশি ডিসচার্জ করা উচিত নয়। কিন্তু লিথিয়াম ব্যাটারি ৮০%-৯০% পর্যন্ত ডিসচার্জ করা যায়।
+- **চার্জিং গতি:** লিথিয়াম ব্যাটারি মাত্র ২-৩ ঘণ্টায় ফুল চার্জ হয়।
+- **রক্ষণাবেক্ষণ:** এতে পানি রিফিল করার প্রয়োজন নেই এবং এটি কোনো ক্ষতিকর গ্যাস নির্গমন করে না।`,
+                date: "২০২৬-০৯-২৫",
+                readTime: "৩ মিনিট"
+            },
+            {
+                id: "art-4",
+                title: "সোলার সায়েন্স: সঠিক ডিসি কেবলের পরিমাপ ও ভোল্টেজ ড্রপ",
+                category: "cable",
+                img: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=600&q=80",
+                excerpt: "চিকন কেবল ব্যবহারে ভোল্টেজ ড্রপ এবং অগ্নিকাণ্ডের ঝুঁকি এড়াতে কেবলের স্কয়ার-মিমি নির্ধারণ করার ফর্মুলা।",
+                content: `সোলার প্যানেলে ভুল সাইজের কেবল ব্যবহার করলে সিস্টেমে ব্যাপক ভোল্টেজ ড্রপ হয় এবং কেবল অতিরিক্ত গরম হয়ে অগ্নিকাণ্ড ঘটতে পারে।
+
+**কেবল নির্ধারণের গুরুত্বপূর্ণ নিয়ম:**
+১. প্যানেল থেকে ইনভার্টারের দূরত্ব যত বেশি হবে, কেবলের থিকনেস (Sq-mm) তত বেশি হতে হবে।
+২. ডিসি সোলার লাইনে সর্বদা **Solar UV Resistance Twin Core Cable** ব্যবহার করতে হবে।
+৩. ভোল্টেজ ড্রপ সর্বোচ্চ ৩% এর মধ্যে সীমাবদ্ধ রাখা উচিত।
+
+**সাধারণ পরিমাপ টেবিল:**
+- ১-২ কিলোওয়াট সিস্টেম (১২-২৪ ভোল্ট): 4 Sq-mm - 6 Sq-mm DC Cable
+- ৩-৫ কিলোওয়াট হাই-ভোল্টেজ সিস্টেম: 4 Sq-mm Solar DC Cable (ভোল্টেজ বেশি হলে কারেন্ট কম থাকে)`,
+                date: "২০২৬-০৯-২০",
+                readTime: "৪ মিনিট"
+            },
+            {
+                id: "art-5",
+                title: "সেফটি প্রটেকশন ডিভাইস: DC SPD, MCB, এবং প্রপার আর্থিং",
+                category: "safety",
+                img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80",
+                excerpt: "বজ্রপাত ও হাই ভোল্টেজ থেকে সোলার ইনভার্টার ও বাসার সব গ্যাজেট সুরক্ষিত রাখতে প্রয়োজনীয় নিরাপত্তা সরঞ্জাম।",
+                content: `সোলার সিস্টেম দীর্ঘমেয়াদী একটি বিনিয়োগ। এটিকে নিরাপদ রাখতে নিম্নলিখিত প্রটেকশন উপাদানগুলো আবশ্যক:
+
+১. **DC SPD (Surge Protection Device):** আাকাশীয় বজ্রপাত বা হাই ভোল্টেজ স্পাইক থেকে ইনভার্টারকে রক্ষা করে।
+২. **DC Fuse & MCB:** প্যানেল থেকে অতিরিক্ত কারেন্ট বা সর্ট সার্কিট হলে সংযোগ বিচ্ছিন্ন করে দেয়।
+৩. **আর্থিং প্রটেকশন (Earth Pit):** সোলার প্যানেলের মেটাল ফ্রেম এবং ইনভার্টার বডির সাথে তামার আর্থিং রড দিয়ে মাটির নিচে সংযোগ নিশ্চিত করতে হবে। আর্থিং রেজিস্ট্যান্স ৫ ওহম (5 Ohms) এর নিচে থাকা বাঞ্ছনীয়।`,
+                date: "২০২৬-০৯-১৫",
+                readTime: "৪ মিনিট"
+            }
+        ];
+
+        // Global State variables
+        let articles = [];
+        let isAdmin = false;
+        let currentCategory = 'all';
+
+        // Initial Load Function
+        window.onload = function() {
+            // Load saved articles from LocalStorage or fallback to defaults
+            const savedArticles = localStorage.getItem('spx_articles');
+            if (savedArticles) {
+                try {
+                    articles = JSON.parse(savedArticles);
+                } catch(e) {
+                    articles = defaultArticles;
+                }
+            } else {
+                articles = defaultArticles;
+                localStorage.setItem('spx_articles', JSON.stringify(defaultArticles));
+            }
+
+            renderArticles();
+            initCalculatorRows();
+            updateStats();
+        };
+
+        // Render Articles Grid
+        function renderArticles() {
+            const grid = document.getElementById('articlesGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            grid.innerHTML = '';
+
+            const filtered = articles.filter(art => {
+                const matchesCat = (currentCategory === 'all' || art.category === currentCategory);
+                const matchesSearch = art.title.toLowerCase().includes(searchVal) || art.excerpt.toLowerCase().includes(searchVal);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-gray-500">
+                        <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                        <p>কোনো আর্টিকেল পাওয়া যায়নি!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(art => {
+                const card = document.createElement('div');
+                card.className = "group relative bg-white dark:bg-darkCard rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Thumbnail Image -->
+                        <div class="relative h-48 w-full overflow-hidden bg-gray-800">
+                            <img src="${art.img}" onerror="this.src='https://placehold.co/600x400/1e293b/facc15?text=Solar+Power+X'" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-bold bg-amber-500 text-slate-950 uppercase tracking-wide">
+                                ${getCategoryName(art.category)}
+                            </span>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-5">
+                            <div class="flex items-center text-[11px] text-gray-400 space-x-3 mb-2">
+                                <span><i class="fa-regular fa-calendar mr-1"></i>${art.date}</span>
+                                <span><i class="fa-regular fa-clock mr-1"></i>${art.readTime}</span>
+                            </div>
+                            <h3 class="font-bold text-base text-gray-900 dark:text-gray-100 group-hover:text-amber-500 transition line-clamp-2 mb-2">
+                                ${art.title}
+                            </h3>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-3 leading-relaxed">
+                                ${art.excerpt}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card Actions -->
+                    <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-gray-100 dark:border-gray-800/60 mt-auto">
+                        <button onclick="openReadModal('${art.id}')" class="text-xs font-bold text-amber-500 hover:text-amber-600 flex items-center">
+                            বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
+                        </button>
+
+                        ${isAdmin ? `
+                            <div class="flex items-center space-x-2">
+                                <button onclick="editArticle('${art.id}')" class="p-1.5 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 text-xs" title="এডিট">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button onclick="deleteArticle('${art.id}')" class="p-1.5 rounded-lg bg-rose-500/10 text-rose-500 hover:bg-rose-500/20 text-xs" title="মুছে ফেলুন">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Category Translation Helper
+        function getCategoryName(cat) {
+            const map = {
+                'panel': 'সোলার প্যানেল',
+                'inverter': 'ইনভার্টার',
+                'battery': 'ব্যাটারি',
+                'cable': 'কেবল সাইজিং',
+                'safety': 'সেফটি প্রটেকশন'
+            };
+            return map[cat] || 'সাধারণ';
+        }
+
+        // Filter Category
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md');
+                btn.classList.add('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            });
+
+            event.target.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+            event.target.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md');
+
+            renderArticles();
+        }
+
+        function filterArticles() {
+            renderArticles();
+        }
+
+        // Open Detailed Article View Modal
+        function openReadModal(id) {
+            const art = articles.find(a => a.id === id);
+            if (!art) return;
+
+            const modalContent = document.getElementById('readModalContent');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                        ${getCategoryName(art.category)}
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white leading-tight">
+                        ${art.title}
+                    </h2>
+                    <div class="flex items-center text-xs text-gray-400 space-x-4 border-b border-gray-200 dark:border-gray-800 pb-4">
+                        <span><i class="fa-regular fa-calendar mr-1"></i>প্রকাশিত: ${art.date}</span>
+                        <span><i class="fa-regular fa-clock mr-1"></i>পড়ার সময়: ${art.readTime}</span>
+                        <span><i class="fa-solid fa-user-check mr-1 text-emerald-500"></i>অনুমোদিত এডমিন</span>
+                    </div>
+                    
+                    <div class="rounded-2xl overflow-hidden my-4 max-h-80">
+                        <img src="${art.img}" onerror="this.src='https://placehold.co/600x400/1e293b/facc15?text=Solar+Power+X'" alt="Article image" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line space-y-3 font-normal">
+                        ${art.content}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('readModal').classList.remove('hidden');
+        }
+
+        function closeReadModal() {
+            document.getElementById('readModal').classList.add('hidden');
+        }
+
+        // Admin Login Simulation (Prompt)
+        function toggleAdminPrompt() {
+            if (isAdmin) {
+                isAdmin = false;
+                document.getElementById('adminStatusText').innerText = 'অ্যাডমিন মোড (লগইন করুন)';
+                document.getElementById('addPostBtn').classList.add('hidden');
+                renderArticles();
+                return;
+            }
+
+            const pass = prompt("অ্যাডমিন প্যানেলে প্রবেশ করতে পাসওয়ার্ড দিন:", "");
+            if (pass === "solarpowerx2026") {
+                isAdmin = true;
+                document.getElementById('adminStatusText').innerText = 'অ্যাডমিন মোড সক্রিয় (লগআউট)';
+                document.getElementById('addPostBtn').classList.remove('hidden');
+                renderArticles();
+                alert("অ্যাডমিন মোড সক্রিয় হয়েছে! এখন আপনি নতুন পোস্ট লিখতে, এডিট ও ডিলিট করতে পারবেন।");
+            } else if (pass !== null) {
+                alert("ভুল পাসওয়ার্ড! সঠিক পাসওয়ার্ড দিন।");
+            }
+        }
+
+        // Modal triggers for adding/editing posts
+        function openAddPostModal() {
+            document.getElementById('modalFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square mr-2"></i> নতুন আর্টেকেল প্রকাশ করুন`;
+            document.getElementById('articleForm').reset();
+            document.getElementById('editArticleId').value = '';
+            document.getElementById('addPostModal').classList.remove('hidden');
+        }
+
+        function closeAddPostModal() {
+            document.getElementById('addPostModal').classList.add('hidden');
+        }
+
+        // Edit Article
+        function editArticle(id) {
+            const art = articles.find(a => a.id === id);
+            if (!art) return;
+
+            document.getElementById('modalFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square mr-2"></i> আর্টেকেল সম্পাদনা করুন`;
+            document.getElementById('editArticleId').value = art.id;
+            document.getElementById('postTitle').value = art.title;
+            document.getElementById('postCategory').value = art.category;
+            document.getElementById('postImg').value = art.img;
+            document.getElementById('postExcerpt').value = art.excerpt;
+            document.getElementById('postContent').value = art.content;
+
+            document.getElementById('addPostModal').classList.remove('hidden');
+        }
+
+        // Save / Update Article to LocalStorage
+        function saveArticle(event) {
+            event.preventDefault();
+
+            const editId = document.getElementById('editArticleId').value;
+            const title = document.getElementById('postTitle').value;
+            const category = document.getElementById('postCategory').value;
+            const img = document.getElementById('postImg').value || 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80';
+            const excerpt = document.getElementById('postExcerpt').value;
+            const content = document.getElementById('postContent').value;
+
+            if (editId) {
+                // Edit mode
+                const index = articles.findIndex(a => a.id === editId);
+                if (index !== -1) {
+                    articles[index] = {
+                        ...articles[index],
+                        title, category, img, excerpt, content
+                    };
+                }
+            } else {
+                // New post mode
+                const newArticle = {
+                    id: 'art-' + Date.now(),
+                    title,
+                    category,
+                    img,
+                    excerpt,
+                    content,
+                    date: new Date().toISOString().split('T')[0],
+                    readTime: '৪ মিনিট'
+                };
+                articles.unshift(newArticle);
+            }
+
+            localStorage.setItem('spx_articles', JSON.stringify(articles));
+            renderArticles();
+            updateStats();
+            closeAddPostModal();
+        }
+
+        // Delete Article
+        function deleteArticle(id) {
+            if (confirm("আপনি কি নিশ্চিত যে এই আর্টিকেলটি মুছে ফেলতে চান?")) {
+                articles = articles.filter(a => a.id !== id);
+                localStorage.setItem('spx_articles', JSON.stringify(articles));
+                renderArticles();
+                updateStats();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('statArticles').innerText = articles.length < 10 ? '0' + articles.length : articles.length;
+        }
+
+        // Solar Load Calculator Logic
+        const defaultApplianceList = [
+            { name: 'LED লাইট', watt: 20, qty: 5, hours: 6 },
+            { name: 'সিঁলিং ফ্যান', watt: 75, qty: 3, hours: 8 },
+            { name: 'রেফ্রিজারেটর / ফ্রিজ', watt: 200, qty: 1, hours: 12 },
+            { name: 'টেলিভিশন', watt: 80, qty: 1, hours: 4 }
+        ];
+
+        function initCalculatorRows() {
+            const container = document.getElementById('applianceRows');
+            container.innerHTML = '';
+            defaultApplianceList.forEach((item, idx) => {
+                addApplianceRow(item.name, item.watt, item.qty, item.hours);
+            });
+        }
+
+        function addApplianceRow(name = '', watt = 50, qty = 1, hours = 5) {
+            const container = document.getElementById('applianceRows');
+            const row = document.createElement('div');
+            row.className = "grid grid-cols-12 gap-2 items-center appliance-row";
+            
+            row.innerHTML = `
+                <input type="text" value="${name}" placeholder="ডিভাইস" class="col-span-5 sm:col-span-4 p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-xs text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 app-name">
+                <input type="number" value="${watt}" placeholder="Watt" class="col-span-3 sm:col-span-3 p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-xs text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 app-watt">
+                <input type="number" value="${qty}" placeholder="Qty" class="col-span-2 sm:col-span-2 p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-xs text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 app-qty">
+                <div class="col-span-2 sm:col-span-3 flex items-center space-x-1">
+                    <input type="number" value="${hours}" placeholder="Hrs" class="w-full p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-xs text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 app-hours">
+                    <button onclick="removeRow(this)" class="p-2 text-rose-500 hover:text-rose-600"><i class="fa-solid fa-trash text-xs"></i></button>
+                </div>
+            `;
+            container.appendChild(row);
+        }
+
+        function removeRow(btn) {
+            btn.closest('.appliance-row').remove();
+        }
+
+        function calculateSolarSystem() {
+            const rows = document.querySelectorAll('.appliance-row');
+            let totalRunningWatt = 0;
+            let totalWhPerDay = 0;
+
+            rows.forEach(row => {
+                const watt = parseFloat(row.querySelector('.app-watt').value) || 0;
+                const qty = parseFloat(row.querySelector('.app-qty').value) || 0;
+                const hrs = parseFloat(row.querySelector('.app-hours').value) || 0;
+
+                totalRunningWatt += (watt * qty);
+                totalWhPerDay += (watt * qty * hrs);
+            });
+
+            if (totalRunningWatt === 0) {
+                alert("দয়া করে কমপক্ষে একটি ডিভাইসের তথ্য দিন।");
+                return;
+            }
+
+            // Calculation Constants
+            // Solar peak sun hours in BD ~ 4.5 hours
+            // Safety factor 1.25 for Inverter
+            const recommendedSolarWatt = Math.round((totalWhPerDay / 4.5) * 1.2);
+            const recommendedInverterKVA = ((totalRunningWatt * 1.3) / 1000).toFixed(1);
+            
+            // Battery AH needed (assuming 24V system, 80% DOD for Lithium/Lead)
+            const batteryAh24V = Math.round((totalWhPerDay / (24 * 0.8)));
+
+            // Recommended Cable size
+            let cableSize = "4.0";
+            if (recommendedSolarWatt > 3000) cableSize = "6.0";
+            if (recommendedSolarWatt > 6000) cableSize = "10.0";
+
+            // Update UI Results
+            document.getElementById('resTotalWatt').innerText = `${totalRunningWatt} Watt`;
+            document.getElementById('resTotalWh').innerText = `${totalWhPerDay.toLocaleString()} Wh / দিন`;
+            document.getElementById('resSolarPanel').innerText = `${recommendedSolarWatt} Watt`;
+            document.getElementById('resInverter').innerText = `${recommendedInverterKVA} kVA / kW`;
+            document.getElementById('resBattery').innerText = `${batteryAh24V} Ah (24V)`;
+            document.getElementById('resCable').innerText = `${cableSize} Sq-mm Solar Cable`;
+
+            document.getElementById('calcResults').classList.remove('hidden');
+        }
+
+        // Tab Switcher
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-amber-500', 'bg-amber-500/10');
+                btn.classList.add('text-gray-600', 'dark:text-gray-300');
+            });
+
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.add('text-amber-500', 'bg-amber-500/10');
+                activeBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
+            }
+        }
+
+        // Theme Toggle (Dark/Light)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                html.classList.add('dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Developer Modal Toggle
+        function toggleDevModal() {
+            const modal = document.getElementById('devModal');
+            modal.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
+```
