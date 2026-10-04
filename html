@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Power X - Advanced Solar Knowledge & Calculator</title>
+    <title>Solar Power X - Next-Gen Energy Solutions</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,11 +12,10 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#fffbebe',
+                        amber: {
+                            400: '#fbbf24',
                             500: '#f59e0b',
                             600: '#d97706',
-                            700: '#b45309',
                         }
                     }
                 }
@@ -26,40 +25,37 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
 
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-40 bg-slate-800/90 backdrop-blur border-b border-slate-700">
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Brand Logo -->
                 <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('articles')">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center text-slate-900 font-black text-xl shadow-lg shadow-amber-500/20">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
                         X
                     </div>
                     <div>
-                        <span class="text-xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Solar Power X</span>
-                        <p class="text-[10px] text-slate-400 tracking-wider">NEXT-GEN ENERGY SOLUTION</p>
+                        <span class="text-xl font-extrabold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Solar Power X</span>
+                        <p class="text-[9px] text-slate-400 tracking-widest font-semibold uppercase">Engineered Energy Portal</p>
                     </div>
                 </div>
 
                 <!-- Navigation Tabs -->
                 <nav class="hidden md:flex space-x-2">
-                    <button onclick="switchTab('articles')" id="nav-articles" class="px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-amber-500 text-slate-900">
-                        <i class="fa-solid fa-newspaper mr-2"></i>Articles & Guides
+                    <button onclick="switchTab('articles')" id="nav-articles" class="px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20">
+                        <i class="fa-solid fa-book-open mr-2"></i>Knowledge Center
                     </button>
-                    <button onclick="switchTab('calculator')" id="nav-calculator" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-amber-400 hover:bg-slate-700/50 transition-colors">
+                    <button onclick="switchTab('calculator')" id="nav-calculator" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-300 hover:text-amber-400 hover:bg-slate-800 transition-all">
                         <i class="fa-solid fa-calculator mr-2"></i>Solar Calculator
                     </button>
                 </nav>
 
-                <!-- Actions -->
+                <!-- Developer Actions -->
                 <div class="flex items-center gap-3">
-                    <button id="adminBtn" onclick="toggleAdminModal()" class="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold flex items-center gap-2 border border-slate-600">
-                        <i class="fa-solid fa-lock text-amber-400"></i> Admin Access
-                    </button>
-                    <button onclick="toggleDevModal()" class="w-10 h-10 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-slate-300 border border-slate-600" title="Developer Info">
-                        <i class="fa-solid fa-ellipsis-vertical text-lg"></i>
+                    <button onclick="toggleDevModal()" class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-amber-400 border border-slate-700 transition-all" title="Developer Information">
+                        <i class="fa-solid fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
@@ -69,121 +65,116 @@
     <!-- Main Content Container -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- ARTICLES SECTION -->
-        <section id="section-articles" class="space-y-6">
-            <div class="flex justify-between items-center flex-wrap gap-4 border-b border-slate-800 pb-4">
-                <div>
-                    <h1 class="text-2xl font-bold text-white">Solar Knowledge Center</h1>
-                    <p class="text-sm text-slate-400">Explore technical guides on Panels, Inverters, Batteries, Cable Sizing, and Protections.</p>
-                </div>
-                <button id="addPostBtn" onclick="openPostModal()" class="hidden px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded-lg text-sm transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20">
-                    <i class="fa-solid fa-plus"></i> Add New Article
-                </button>
+        <!-- KNOWLEDGE & ARTICLES SECTION -->
+        <section id="section-articles" class="space-y-8">
+            <div class="border-b border-slate-800 pb-5">
+                <h1 class="text-3xl font-extrabold text-white">Solar Engineering Guides & Articles</h1>
+                <p class="text-sm text-slate-400 mt-1">Explore complete technical guidelines on Solar Panels, Hybrid Inverters, Battery Technologies, Protection, and Wiring.</p>
             </div>
 
             <!-- Category Filters -->
-            <div class="flex flex-wrap gap-2" id="categoryFilters">
-                <button onclick="filterCategory('All')" class="px-3 py-1.5 rounded-full text-xs font-medium bg-amber-500 text-slate-900 filter-btn">All Topics</button>
-                <button onclick="filterCategory('Solar Panels')" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-slate-400 hover:text-white filter-btn">Solar Panels</button>
-                <button onclick="filterCategory('Inverters')" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-slate-400 hover:text-white filter-btn">Inverters</button>
-                <button onclick="filterCategory('Batteries')" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-slate-400 hover:text-white filter-btn">Batteries</button>
-                <button onclick="filterCategory('Cable Sizing')" class="px-3 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-slate-400 hover:text-white filter-btn">Cable Sizing & Protections</button>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterCategory('All')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-amber-500 text-slate-950 filter-btn">All Topics</button>
+                <button onclick="filterCategory('Solar Panels')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 filter-btn">Solar Panels</button>
+                <button onclick="filterCategory('Inverters')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 filter-btn">Inverters & Systems</button>
+                <button onclick="filterCategory('Batteries')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 filter-btn">Batteries</button>
+                <button onclick="filterCategory('Protection')" class="px-4 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 filter-btn">Wiring & Safety</button>
             </div>
 
             <!-- Articles Grid -->
             <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Dynamic Content Will Be Rendered Here -->
+                <!-- Articles will load dynamically -->
             </div>
         </section>
 
-        <!-- CALCULATOR SECTION -->
-        <section id="section-calculator" class="hidden space-y-6">
-            <div class="border-b border-slate-800 pb-4">
-                <h1 class="text-2xl font-bold text-white">Solar System Load Calculator</h1>
-                <p class="text-sm text-slate-400">Add your appliances with Wattage, Quantity, and daily Usage Hours to calculate your solar requirements.</p>
+        <!-- LOAD CALCULATOR SECTION -->
+        <section id="section-calculator" class="hidden space-y-8">
+            <div class="border-b border-slate-800 pb-5">
+                <h1 class="text-3xl font-extrabold text-white">Solar Power & Load Requirement Calculator</h1>
+                <p class="text-sm text-slate-400 mt-1">Input your appliances with Wattage, Quantity, and daily Running Hours for exact Solar System sizing.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Appliance Input Form -->
-                <div class="lg:col-span-2 bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 space-y-6">
-                    <h2 class="text-lg font-semibold text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-plug"></i> Add Electrical Appliances
+                <!-- Appliance Form -->
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-plus-circle"></i> Add Electrical Loads
                     </h2>
 
                     <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
                         <div class="sm:col-span-1">
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Appliance Name</label>
-                            <input type="text" id="applianceName" placeholder="e.g. Ceiling Fan" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Appliance Name</label>
+                            <input type="text" id="appName" placeholder="e.g. Ceiling Fan" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Watts (W)</label>
-                            <input type="number" id="applianceWatt" placeholder="75" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Watts (W)</label>
+                            <input type="number" id="appWatt" placeholder="75" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Quantity</label>
-                            <input type="number" id="applianceQty" placeholder="1" value="1" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Quantity</label>
+                            <input type="number" id="appQty" value="1" min="1" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Hours / Day</label>
-                            <input type="number" id="applianceHours" placeholder="8" value="6" step="0.5" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Hours / Day</label>
+                            <input type="number" id="appHours" value="6" step="0.5" min="0.5" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                         </div>
                     </div>
 
-                    <button onclick="addAppliance()" class="w-full py-2.5 bg-slate-700 hover:bg-slate-600 text-amber-400 border border-amber-500/30 font-semibold rounded-lg text-sm transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-plus"></i> Add Item to List
+                    <button onclick="addAppliance()" class="w-full py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-sm transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-add"></i> Add Appliance to List
                     </button>
 
-                    <!-- Appliance Table -->
+                    <!-- Table -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-slate-300">
-                            <thead class="bg-slate-900/80 text-xs text-slate-400 uppercase">
+                            <thead class="bg-slate-950 text-xs text-slate-400 uppercase">
                                 <tr>
                                     <th class="p-3">Appliance</th>
                                     <th class="p-3">Power</th>
                                     <th class="p-3">Qty</th>
                                     <th class="p-3">Hours</th>
-                                    <th class="p-3">Total Energy</th>
+                                    <th class="p-3">Daily Energy</th>
                                     <th class="p-3 text-right">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="applianceTableBody" class="divide-y divide-slate-700/50">
-                                <!-- Dynamic Items -->
+                            <tbody id="applianceList" class="divide-y divide-slate-800">
+                                <!-- Dynamic appliance list -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Calculation Summary -->
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 space-y-6 flex flex-col justify-between">
+                <!-- Calculation Output Summary -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6 flex flex-col justify-between">
                     <div>
-                        <h2 class="text-lg font-semibold text-amber-400 mb-4 flex items-center gap-2">
-                            <i class="fa-solid fa-chart-pie"></i> System Recommendation
+                        <h2 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-square-poll-vertical"></i> Sizing Output Summary
                         </h2>
 
                         <div class="space-y-4">
-                            <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
-                                <span class="text-xs text-slate-400 block">Total Peak Power</span>
-                                <span id="resTotalPower" class="text-2xl font-black text-amber-400">0 W</span>
+                            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                                <span class="text-xs text-slate-400 block font-semibold">Total Connected Power</span>
+                                <span id="outWatt" class="text-2xl font-black text-amber-400">0 Watts</span>
                             </div>
 
-                            <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
-                                <span class="text-xs text-slate-400 block">Daily Energy Consumption</span>
-                                <span id="resTotalEnergy" class="text-2xl font-black text-amber-400">0 Wh / day</span>
+                            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                                <span class="text-xs text-slate-400 block font-semibold">Total Daily Energy Consumption</span>
+                                <span id="outWh" class="text-2xl font-black text-amber-400">0 Wh / day</span>
                             </div>
 
-                            <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
-                                <span class="text-xs text-slate-400 block">Recommended Inverter Rating</span>
-                                <span id="resInverter" class="text-xl font-bold text-slate-200">0 kVA</span>
+                            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                                <span class="text-xs text-slate-400 block font-semibold">Suggested Inverter Rating</span>
+                                <span id="outInverter" class="text-lg font-bold text-slate-100">0.00 kVA</span>
                             </div>
 
-                            <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
-                                <span class="text-xs text-slate-400 block">Recommended Solar Panels</span>
-                                <span id="resPanels" class="text-xl font-bold text-slate-200">0 Watt Total</span>
+                            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                                <span class="text-xs text-slate-400 block font-semibold">Suggested Solar Panel Capacity</span>
+                                <span id="outPanels" class="text-lg font-bold text-slate-100">0 Watt Peak</span>
                             </div>
 
-                            <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-700">
-                                <span class="text-xs text-slate-400 block">Battery Bank Required (12V)</span>
-                                <span id="resBattery" class="text-xl font-bold text-slate-200">0 Ah</span>
+                            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                                <span class="text-xs text-slate-400 block font-semibold">Required Battery Capacity (12V)</span>
+                                <span id="outBattery" class="text-lg font-bold text-slate-100">0 Ah</span>
                             </div>
                         </div>
                     </div>
@@ -193,128 +184,165 @@
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL -->
-    <div id="adminModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-slate-700 pb-3">
-                <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-user-shield text-amber-400 mr-2"></i>Admin Authentication</h3>
-                <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div>
-                <label class="block text-xs font-medium text-slate-400 mb-1">Enter Admin Password</label>
-                <input type="password" id="adminPasswordInput" placeholder="Password" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
-                <p id="adminErrorMsg" class="text-xs text-red-400 mt-1 hidden">Invalid Password!</p>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="loginAdmin()" class="w-full py-2 bg-amber-500 text-slate-900 font-bold rounded-lg text-sm hover:bg-amber-600 transition-all">Login</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- POST ADD/EDIT MODAL -->
-    <div id="postModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-slate-700 pb-3">
-                <h3 id="postModalTitle" class="text-lg font-bold text-white">Add New Article</h3>
-                <button onclick="closePostModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form id="postForm" onsubmit="handlePostSubmit(event)" class="space-y-3">
-                <input type="hidden" id="postId">
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Article Title</label>
-                    <input type="text" id="postTitle" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Category</label>
-                    <select id="postCategory" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
-                        <option value="Solar Panels">Solar Panels</option>
-                        <option value="Inverters">Inverters</option>
-                        <option value="Batteries">Batteries</option>
-                        <option value="Cable Sizing">Cable Sizing & Protections</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Thumbnail Image URL</label>
-                    <input type="url" id="postImage" required placeholder="https://images.unsplash.com/..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Content/Description</label>
-                    <textarea id="postContent" rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500"></textarea>
-                </div>
-                <button type="submit" class="w-full py-2 bg-amber-500 text-slate-900 font-bold rounded-lg text-sm hover:bg-amber-600 transition-all">Save Article</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- DEVELOPER INFO MODAL -->
+    <!-- DEVELOPER INFO MODAL (THREE DOT MENU) -->
     <div id="devModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-sm w-full p-6 space-y-4 text-center shadow-2xl relative">
-            <button onclick="toggleDevModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            <div class="w-20 h-20 bg-amber-500 rounded-full mx-auto flex items-center justify-center text-slate-900 font-black text-3xl shadow-lg shadow-amber-500/30">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-5 text-center shadow-2xl relative">
+            <button onclick="toggleDevModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="w-20 h-20 bg-amber-500 text-slate-950 rounded-2xl mx-auto flex items-center justify-center font-black text-3xl shadow-xl shadow-amber-500/20">
                 SH
             </div>
             <div>
-                <h3 class="text-xl font-bold text-white">MD SAZEDUL HAQUE</h3>
-                <p class="text-xs text-amber-400 font-medium mt-1">Lead Developer & Energy Consultant</p>
+                <h3 class="text-xl font-extrabold text-white">MD SAZEDUL HAQUE</h3>
+                <p class="text-xs text-amber-400 font-bold mt-1">Lead Developer & Solar System Architect</p>
             </div>
-            <p class="text-xs text-slate-400 leading-relaxed">
-                Specialized in Hybrid & Off-grid Solar System Engineering, Load Calculations, and Modern Web Applications.
-            </p>
-            <div class="pt-2 border-t border-slate-700 text-xs text-slate-500">
-                © 2026 Solar Power X. All rights reserved.
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed text-left space-y-2">
+                <p><i class="fa-solid fa-check text-amber-400 mr-2"></i>Expertise in On-Grid, Off-Grid & Hybrid Solar Solutions.</p>
+                <p><i class="fa-solid fa-check text-amber-400 mr-2"></i>System Load Sizing, Inverter & Protection Protections Engineering.</p>
+            </div>
+            <div class="pt-2 border-t border-slate-800 text-[11px] text-slate-500">
+                © 2026 Solar Power X. All Rights Reserved.
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-6 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
-            <p>Designed & Developed by <span class="text-amber-400 font-semibold">MD SAZEDUL HAQUE</span></p>
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+            <p>Designed & Developed by <span class="text-amber-400 font-bold">MD SAZEDUL HAQUE</span></p>
         </div>
     </footer>
 
-    <!-- JavaScript Logic -->
+    <!-- JavaScript Engine -->
     <script>
-        // Default State
-        let isAdminLoggedIn = false;
-        const ADMIN_PASS = "sazedul2026";
-
-        let defaultArticles = [
+        // Static Articles (Add/Edit directly in code for global persistence)
+        const articles = [
             {
                 id: 1,
-                title: "Understanding Mono-PERC vs N-Type TopCon Panels",
+                title: "Monocrystalline PERC vs N-Type TOPCon Panels",
                 category: "Solar Panels",
                 image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600",
-                content: "TopCon solar panels offer higher efficiency (up to 22.5%) and lower temperature coefficients compared to standard PERC panels, making them ideal for high-temperature zones."
+                content: "N-Type TOPCon panels provide higher efficiency (up to 22.5%) and better performance in hot environments compared to standard Mono-PERC modules."
             },
             {
                 id: 2,
-                title: "Hybrid vs On-Grid Inverters: Which One to Choose?",
+                title: "Hybrid Inverter vs On-Grid Systems Explained",
                 category: "Inverters",
                 image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600",
-                content: "Hybrid inverters manage both solar inputs and battery storage simultaneously, allowing seamless backup power during grid power failures."
+                content: "Hybrid inverters manage power flow simultaneously between Solar Panels, Grid, and Battery storage, securing continuous power backup during power cuts."
             },
             {
                 id: 3,
-                title: "Lithium LiFePO4 vs Tubular Gel Batteries",
+                title: "LiFePO4 Lithium vs Tubular Gel Batteries",
                 category: "Batteries",
                 image: "https://images.unsplash.com/photo-1558441719-6705166e2375?w=600",
-                content: "LiFePO4 batteries last up to 6000 cycles at 80% DOD compared to Tubular batteries (1500 cycles), providing a much lower long-term cost per kWh."
+                content: "Lithium Iron Phosphate (LiFePO4) batteries deliver 6000+ deep discharge cycles, high efficiency, lightweight design, and long operational lifespan."
             },
             {
                 id: 4,
-                title: "DC Cable Sizing & Circuit Breaker Protection Guide",
-                category: "Cable Sizing",
+                title: "DC Cable Sizing & Protection Circuit Breakers (SPD/MCB)",
+                category: "Protection",
                 image: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?w=600",
-                content: "Using 4mm² or 6mm² copper cables reduces voltage drop under 2%. Always install DC SPD and MCB for lightning and overcurrent protection."
+                content: "Selecting correct 4mm² / 6mm² copper cables keeps voltage drop below 2%. Install proper DC Surge Protection Devices (SPD) and Fuse Units."
             }
         ];
 
-        let articles = JSON.parse(localStorage.getItem('spx_articles')) || defaultArticles;
         let appliances = [
-            { id: 1, name: 'Ceiling Fan', watt: 75, qty: 4, hours: 8 },
-            { id: 2, name: 'LED Bulbs', watt: 12, qty: 10, hours: 6 }
+            { id: 1, name: "Ceiling Fan", watt: 75, qty: 4, hours: 8 },
+            { id: 2, name: "LED Lights", watt: 12, qty: 10, hours: 6 }
         ];
 
-        // Init App
-        document.ad
+        document.addEventListener("DOMContentLoaded", () => {
+            renderArticles('All');
+            renderAppliances();
+        });
+
+        function switchTab(tab) {
+            document.getElementById('section-articles').classList.toggle('hidden', tab !== 'articles');
+            document.getElementById('section-calculator').classList.toggle('hidden', tab !== 'calculator');
+
+            document.getElementById('nav-articles').className = tab === 'articles'
+                ? 'px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
+                : 'px-4 py-2 rounded-xl text-sm font-semibold text-slate-300 hover:text-amber-400 hover:bg-slate-800 transition-all';
+
+            document.getElementById('nav-calculator').className = tab === 'calculator'
+                ? 'px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
+                : 'px-4 py-2 rounded-xl text-sm font-semibold text-slate-300 hover:text-amber-400 hover:bg-slate-800 transition-all';
+        }
+
+        function renderArticles(cat) {
+            const grid = document.getElementById('articlesGrid');
+            grid.innerHTML = '';
+            const filtered = cat === 'All' ? articles : articles.filter(a => a.category === cat);
+
+            filtered.forEach(item => {
+                grid.innerHTML += `
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all group flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-3 left-3 bg-slate-950/80 text-amber-400 border border-amber-500/30 text-[10px] uppercase font-bold px-3 py-1 rounded-full">
+                                ${item.category}
+                            </span>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
+                            <div>
+                                <h3 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">${item.title}</h3>
+                                <p class="text-xs text-slate-400 mt-2 leading-relaxed">${item.content}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterCategory(cat) {
+            renderArticles(cat);
+        }
+
+        function addAppliance() {
+            const name = document.getElementById('appName').value || 'Appliance';
+            const watt = parseFloat(document.getElementById('appWatt').value) || 0;
+            const qty = parseInt(document.getElementById('appQty').value) || 1;
+            const hours = parseFloat(document.getElementById('appHours').value) || 1;
+
+            if (watt <= 0) return alert('Please enter valid watt rating.');
+
+            appliances.push({ id: Date.now(), name, watt, qty, hours });
+            document.getElementById('appName').value = '';
+            document.getElementById('appWatt').value = '';
+            renderAppliances();
+        }
+
+        function removeAppliance(id) {
+            appliances = appliances.filter(a => a.id !== id);
+            renderAppliances();
+        }
+
+        function renderAppliances() {
+            const tbody = document.getElementById('applianceList');
+            tbody.innerHTML = '';
+
+            let totalWatts = 0;
+            let totalWh = 0;
+
+            appliances.forEach(item => {
+                const itemWatt = item.watt * item.qty;
+                const itemWh = itemWatt * item.hours;
+                totalWatts += itemWatt;
+                totalWh += itemWh;
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td class="p-3 font-semibold text-white">${item.name}</td>
+                        <td class="p-3">${item.watt} W</td>
+                        <td class="p-3">${item.qty}</td>
+                        <td class="p-3">${item.hours} hrs</td>
+                        <td class="p-3 font-bold text-amber-400">${itemWh} Wh</td>
+                        <td class="p-3 text-right">
+                            <button onclick="removeAppliance(${item.id})" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            // Calculations
+   
