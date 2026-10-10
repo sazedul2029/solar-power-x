@@ -61,7 +61,7 @@
             </div>
         </div>
         
-        <!-- Mobile Navigation Bar (Bottom/Sub header for mobile touch) -->
+        <!-- Mobile Navigation Bar -->
         <div class="md:hidden flex border-t border-slate-800 bg-slate-900/90">
             <button onclick="switchTab('articles')" id="mob-nav-articles" class="flex-1 py-3 text-center text-xs font-bold bg-amber-500 text-slate-950 transition-all flex items-center justify-center gap-2">
                 <i class="fa-solid fa-book-open"></i> Articles
@@ -93,7 +93,7 @@
 
             <!-- Articles Grid -->
             <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- JavaScript dynamically renders articles here -->
+                <!-- Articles dynamically loaded -->
             </div>
         </section>
 
@@ -194,7 +194,7 @@
 
     </main>
 
-    <!-- DEVELOPER INFO MODAL (THREE DOT MENU POPUP) -->
+    <!-- DEVELOPER INFO MODAL -->
     <div id="devModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-8 space-y-6 text-center shadow-2xl relative animate-scaleUp">
             <button onclick="toggleDevModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center transition-all"><i class="fa-solid fa-xmark text-lg"></i></button>
@@ -225,8 +225,7 @@
 
     <!-- JavaScript Application Engine -->
     <script>
-        // === ARTICLE DATA DIRECT MANAGEMENT ===
-        // আপনি নতুন কোনো আর্টিকেল বা পোস্ট যুক্ত করতে চাইলে নিচের লিস্টে সরাসরি কোড এডিট করে লিখে দিতে পারবেন।
+        // Article Data List
         const articles = [
             {
                 id: 1,
@@ -263,7 +262,7 @@
             { id: 2, name: "LED Bulbs", watt: 12, qty: 10, hours: 6 }
         ];
 
-        // Initialization
+        // Initialization on Load
         document.addEventListener("DOMContentLoaded", () => {
             renderArticles('All');
             renderAppliances();
@@ -301,4 +300,6 @@
             grid.innerHTML = '';
             const filtered = cat === 'All' ? articles : articles.filter(a => a.category === cat);
 
-      
+            filtered.forEach(item => {
+                grid.innerHTML += `
+                    <div class="bg-slate-900 border border-slate-800/80 rounded-3xl overflow-hidden hover:border-amber-500/50 transit
