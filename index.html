@@ -1,466 +1,304 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Power X - Knowledge & Shop</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            padding: 15px;
-        }
-
-        /* Header Styling */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            margin-bottom: 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-icon {
-            background-color: #f59e0b;
-            color: #000;
-            font-weight: bold;
-            font-size: 20px;
-            padding: 8px 14px;
-            border-radius: 8px;
-        }
-
-        .logo-text h1 {
-            font-size: 18px;
-            color: #f59e0b;
-        }
-
-        .logo-text p {
-            font-size: 10px;
-            color: #9ca3af;
-            letter-spacing: 1px;
-        }
-
-        .admin-btn {
-            background-color: #1f2937;
-            color: #f59e0b;
-            border: 1px solid #f59e0b;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .admin-btn:hover {
-            background-color: #f59e0b;
-            color: #000;
-        }
-
-        /* Hero Section */
-        .hero h2 {
-            font-size: 22px;
-            margin-bottom: 5px;
-        }
-
-        .hero p {
-            font-size: 13px;
-            color: #9ca3af;
-            margin-bottom: 15px;
-        }
-
-        /* Search Bar */
-        .search-container {
-            margin-bottom: 15px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #374151;
-            background-color: #111827;
-            color: #fff;
-            outline: none;
-        }
-
-        .search-input:focus {
-            border-color: #f59e0b;
-        }
-
-        /* Filter Categories */
-        .categories {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .cat-btn {
-            background-color: #1f2937;
-            color: #9ca3af;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            white-space: nowrap;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background-color: #f59e0b;
-            color: #000;
-            font-weight: bold;
-        }
-
-        /* Grid Layout for Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 15px;
-        }
-
-        .card {
-            background-color: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-tag {
-            font-size: 10px;
-            background-color: #374151;
-            color: #f59e0b;
-            padding: 3px 8px;
-            border-radius: 4px;
-            width: fit-content;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .card-title {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .card-desc {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #1f2937;
-            padding-top: 10px;
-        }
-
-        .price {
-            font-size: 16px;
-            font-weight: bold;
-            color: #10b981;
-        }
-
-        .buy-btn {
-            background-color: #f59e0b;
-            color: #000;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        /* Admin Modal Form */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            z-index: 100;
-        }
-
-        .modal-content {
-            background-color: #111827;
-            border: 1px solid #374151;
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .modal-content h3 {
-            margin-bottom: 15px;
-            color: #f59e0b;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            margin-bottom: 4px;
-            color: #9ca3af;
-        }
-
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #374151;
-            background-color: #1f2937;
-            color: #fff;
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .submit-btn {
-            background-color: #10b981;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .close-btn {
-            background-color: #ef4444;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
-    <header>
-        <div class="logo-container">
-            <div class="logo-icon">X</div>
-            <div class="logo-text">
-                <h1>Solar Power X</h1>
-                <p>NEXT-GEN ENERGY SOLUTION</p>
-            </div>
-        </div>
-        <button class="admin-btn" onclick="openAdminModal()">🔒 Admin Access</button>
-    </header>
-
-    <!-- Main Content -->
-    <div class="hero">
-        <h2>Solar Knowledge Center & Shop</h2>
-        <p>Explore technical guides, panels, inverters, batteries and buy products directly.</p>
-    </div>
-
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search products or articles..." onkeyup="filterItems()">
-    </div>
-
-    <!-- Category Buttons -->
-    <div class="categories">
-        <button class="cat-btn active" onclick="filterCategory('all', this)">All Topics</button>
-        <button class="cat-btn" onclick="filterCategory('Solar Panels', this)">Solar Panels</button>
-        <button class="cat-btn" onclick="filterCategory('Inverters', this)">Inverters</button>
-        <button class="cat-btn" onclick="filterCategory('Batteries', this)">Batteries</button>
-        <button class="cat-btn" onclick="filterCategory('Cable Sizing & Safety', this)">Cable Sizing & Safety</button>
-    </div>
-
-    <!-- Product & Article Grid -->
-    <div class="grid" id="itemsGrid">
-        <!-- Default Item 1 -->
-        <div class="card" data-category="Solar Panels">
-            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=500" alt="Solar Panel">
-            <div class="card-content">
-                <span class="card-tag">Solar Panels</span>
-                <h3 class="card-title">550W Mono PERC Solar Panel</h3>
-                <p class="card-desc">High-efficiency solar panel for residential and industrial rooftop installation.</p>
-                <div class="card-footer">
-                    <span class="price">৳ 18,500</span>
-                    <button class="buy-btn" onclick="buyProduct('550W Mono PERC Solar Panel', '18500')">Buy Now</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Default Item 2 -->
-        <div class="card" data-category="Inverters">
-            <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=500" alt="Inverter">
-            <div class="card-content">
-                <span class="card-tag">Inverters</span>
-                <h3 class="card-title">5KW Hybrid Solar Inverter</h3>
-                <p class="card-desc">Pure sine wave inverter with built-in MPPT charge controller.</p>
-                <div class="card-footer">
-                    <span class="price">৳ 65,000</span>
-                    <button class="buy-btn" onclick="buyProduct('5KW Hybrid Solar Inverter', '65000')">Buy Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Modal -->
-    <div class="modal" id="adminModal">
-        <div class="modal-content">
-            <h3>Add New Product / Article</h3>
-            <form id="addForm" onsubmit="handleFormSubmit(event)">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" id="itemTitle" required placeholder="e.g. 200Ah Gel Battery">
-                </div>
-                <div class="form-group">
-                    <label>Category</label>
-                    <select id="itemCategory">
-                        <option value="Solar Panels">Solar Panels</option>
-                        <option value="Inverters">Inverters</option>
-                        <option value="Batteries">Batteries</option>
-                        <option value="Cable Sizing & Safety">Cable Sizing & Safety</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Image URL</label>
-                    <input type="url" id="itemImage" placeholder="https://example.com/image.jpg" required>
-                </div>
-                <div class="form-group">
-                    <label>Description / Article</label>
-                    <textarea id="itemDesc" rows="3" required placeholder="Write details here..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Price (BDT)</label>
-                    <input type="text" id="itemPrice" placeholder="e.g. 25000" required>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">Publish</button>
-                    <button type="button" class="close-btn" onclick="closeAdminModal()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
+    <title>Solar Power X - Professional Solar Engineering Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        let currentCategory = 'all';
-
-        function openAdminModal() {
-            document.getElementById('adminModal').style.display = 'flex';
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
-
-        // Form Submit Handler
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('itemTitle').value;
-            const category = document.getElementById('itemCategory').value;
-            const image = document.getElementById('itemImage').value;
-            const desc = document.getElementById('itemDesc').value;
-            const price = document.getElementById('itemPrice').value;
-
-            const grid = document.getElementById('itemsGrid');
-            const newCard = document.createElement('div');
-            newCard.className = 'card';
-            newCard.setAttribute('data-category', category);
-
-            newCard.innerHTML = `
-                <img src="${image}" alt="${title}">
-                <div class="card-content">
-                    <span class="card-tag">${category}</span>
-                    <h3 class="card-title">${title}</h3>
-                    <p class="card-desc">${desc}</p>
-                    <div class="card-footer">
-                        <span class="price">৳ ${price}</span>
-                        <button class="buy-btn" onclick="buyProduct('${title}', '${price}')">Buy Now</button>
-                    </div>
-                </div>
-            `;
-
-            grid.prepend(newCard);
-            document.getElementById('addForm').reset();
-            closeAdminModal();
-            alert('নতুন প্রোডাক্ট/আর্টিকেল সফলভাবে যুক্ত হয়েছে!');
-        }
-
-        // Filter Category
-        function filterCategory(cat, btn) {
-            currentCategory = cat;
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterItems();
-        }
-
-        // Filter Function (Search + Category)
-        function filterItems() {
-            const searchValue = document.getElementById('searchInput').value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-
-            cards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const title = card.querySelector('.card-title').innerText.toLowerCase();
-                const desc = card.querySelector('.card-desc').innerText.toLowerCase();
-
-                const matchesCategory = (currentCategory === 'all' || category === currentCategory);
-                const matchesSearch = title.includes(searchValue) || desc.includes(searchValue);
-
-                if (matchesCategory && matchesSearch) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
                 }
-            });
-        }
-
-        // Order Action
-        function buyProduct(title, price) {
-            alert(`ধন্যবাদ! আপনি "${title}" বইটি/প্রোডাক্টটি ক্রয় করার অনুরোধ পাঠিয়েছেন। মূল্য: ৳ ${price}`);
+            }
         }
     </script>
-</body>
-</html>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3.5 cursor-pointer group" onclick="switchTab('articles')">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-slate-950 font-black text-2xl shadow-xl shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                        X
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">Solar Power X</span>
+                        <p class="text-[10px] text-slate-400 tracking-widest font-bold uppercase">Next-Gen Energy Solutions</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="hidden md:flex space-x-3">
+                    <button onclick="switchTab('articles')" id="nav-articles" class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 flex items-center gap-2">
+                        <i class="fa-solid fa-book-open"></i> Knowledge Center
+                    </button>
+                    <button onclick="switchTab('calculator')" id="nav-calculator" class="px-5 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:text-amber-400 hover:bg-slate-900 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Solar Load Calculator
+                    </button>
+                </nav>
+
+                <!-- Developer Branding Menu Trigger -->
+                <div class="flex items-center gap-3">
+                    <button onclick="toggleDevModal()" class="w-11 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 flex items-center justify-center text-amber-400 border border-slate-800 shadow-inner transition-all hover:scale-105" title="Developer Info">
+                        <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Bar (Bottom/Sub header for mobile touch) -->
+        <div class="md:hidden flex border-t border-slate-800 bg-slate-900/90">
+            <button onclick="switchTab('articles')" id="mob-nav-articles" class="flex-1 py-3 text-center text-xs font-bold bg-amber-500 text-slate-950 transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-book-open"></i> Articles
+            </button>
+            <button onclick="switchTab('calculator')" id="mob-nav-calculator" class="flex-1 py-3 text-center text-xs font-bold text-slate-300 hover:text-amber-400 transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-calculator"></i> Calculator
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- ARTICLES SECTION -->
+        <section id="section-articles" class="space-y-8 animate-fadeIn">
+            <div class="border-b border-slate-800/80 pb-6">
+                <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Solar Engineering Guides & Articles</h1>
+                <p class="text-sm text-slate-400 mt-2 max-w-2xl">Explore professional technical guides on High-Efficiency Solar Panels, Hybrid Inverters, Lithium Battery Systems, and Protection Engineering.</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-2.5">
+                <button onclick="filterCategory('All')" class="px-5 py-2 rounded-full text-xs font-extrabold bg-amber-500 text-slate-950 shadow-md transition-all filter-btn">All Topics</button>
+                <button onclick="filterCategory('Solar Panels')" class="px-5 py-2 rounded-full text-xs font-extrabold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition-all filter-btn">Solar Panels</button>
+                <button onclick="filterCategory('Inverters')" class="px-5 py-2 rounded-full text-xs font-extrabold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition-all filter-btn">Inverters</button>
+                <button onclick="filterCategory('Batteries')" class="px-5 py-2 rounded-full text-xs font-extrabold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition-all filter-btn">Batteries</button>
+                <button onclick="filterCategory('Protection')" class="px-5 py-2 rounded-full text-xs font-extrabold bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800 transition-all filter-btn">Wiring & Safety</button>
+            </div>
+
+            <!-- Articles Grid -->
+            <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- JavaScript dynamically renders articles here -->
+            </div>
+        </section>
+
+        <!-- CALCULATOR SECTION -->
+        <section id="section-calculator" class="hidden space-y-8 animate-fadeIn">
+            <div class="border-b border-slate-800/80 pb-6">
+                <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">Solar System Load Calculator</h1>
+                <p class="text-sm text-slate-400 mt-2 max-w-2xl">Add your electrical appliances with Wattage, Quantity, and daily running Hours to compute exact solar system specifications.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Input Form -->
+                <div class="lg:col-span-2 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+                    <h2 class="text-xl font-extrabold text-amber-400 flex items-center gap-3">
+                        <i class="fa-solid fa-plug-circle-plus"></i> Add Electrical Loads
+                    </h2>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                        <div class="sm:col-span-1">
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Appliance Name</label>
+                            <input type="text" id="appName" placeholder="e.g. Ceiling Fan" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Watts (W)</label>
+                            <input type="number" id="appWatt" placeholder="75" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Quantity</label>
+                            <input type="number" id="appQty" value="1" min="1" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Hours / Day</label>
+                            <input type="number" id="appHours" value="6" step="0.5" min="0.5" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-all">
+                        </div>
+                    </div>
+
+                    <button onclick="addAppliance()" class="w-full py-3.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black rounded-2xl text-sm transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 hover:scale-[1.01]">
+                        <i class="fa-solid fa-plus-circle text-lg"></i> Add Item to Calculation List
+                    </button>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto pt-2">
+                        <table class="w-full text-left text-sm text-slate-300">
+                            <thead class="bg-slate-950 text-xs text-slate-400 uppercase tracking-wider">
+                                <tr>
+                                    <th class="p-3.5 rounded-l-xl">Appliance</th>
+                                    <th class="p-3.5">Power</th>
+                                    <th class="p-3.5">Qty</th>
+                                    <th class="p-3.5">Hours</th>
+                                    <th class="p-3.5">Energy</th>
+                                    <th class="p-3.5 text-right rounded-r-xl">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applianceList" class="divide-y divide-slate-800/60">
+                                <!-- Dynamic Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Summary Output Box -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between shadow-2xl">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-amber-400 mb-6 flex items-center gap-3">
+                            <i class="fa-solid fa-chart-pie"></i> System Sizing Output
+                        </h2>
+
+                        <div class="space-y-4">
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 block font-bold uppercase tracking-wider">Total Peak Power</span>
+                                <span id="outWatt" class="text-2xl font-black text-amber-400 mt-1 block">0 Watts</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 block font-bold uppercase tracking-wider">Daily Energy Consumption</span>
+                                <span id="outWh" class="text-2xl font-black text-amber-400 mt-1 block">0 Wh / day</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 block font-bold uppercase tracking-wider">Recommended Inverter</span>
+                                <span id="outInverter" class="text-lg font-extrabold text-slate-100 mt-1 block">0.00 kVA</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 block font-bold uppercase tracking-wider">Solar Panel Array</span>
+                                <span id="outPanels" class="text-lg font-extrabold text-slate-100 mt-1 block">0 Watt Peak</span>
+                            </div>
+
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800/80">
+                                <span class="text-xs text-slate-400 block font-bold uppercase tracking-wider">Battery Bank (12V System)</span>
+                                <span id="outBattery" class="text-lg font-extrabold text-slate-100 mt-1 block">0 Ah</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- DEVELOPER INFO MODAL (THREE DOT MENU POPUP) -->
+    <div id="devModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-8 space-y-6 text-center shadow-2xl relative animate-scaleUp">
+            <button onclick="toggleDevModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white w-9 h-9 rounded-xl bg-slate-800 flex items-center justify-center transition-all"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="w-24 h-24 bg-gradient-to-tr from-amber-600 to-amber-400 text-slate-950 rounded-3xl mx-auto flex items-center justify-center font-black text-4xl shadow-2xl shadow-amber-500/30">
+                SH
+            </div>
+            <div>
+                <h3 class="text-2xl font-black text-white">MD SAZEDUL HAQUE</h3>
+                <p class="text-xs text-amber-400 font-extrabold mt-1 uppercase tracking-widest">Lead Developer & Energy Architect</p>
+            </div>
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 text-xs text-slate-300 leading-relaxed text-left space-y-3 font-medium">
+                <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-400"></i> Expert in Off-Grid & Hybrid Solar Systems.</p>
+                <p class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-amber-400"></i> Professional Load Sizing & Circuit Engineering.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-800 text-xs text-slate-500 font-bold">
+                © 2026 Solar Power X. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400 space-y-2">
+            <p class="font-medium">Designed & Developed with precision by <span class="text-amber-400 font-bold">MD SAZEDUL HAQUE</span></p>
+            <p class="text-slate-500">Solar Power X Portal - Empowering Renewable Energy Knowledge</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Engine -->
+    <script>
+        // === ARTICLE DATA DIRECT MANAGEMENT ===
+        // আপনি নতুন কোনো আর্টিকেল বা পোস্ট যুক্ত করতে চাইলে নিচের লিস্টে সরাসরি কোড এডিট করে লিখে দিতে পারবেন।
+        const articles = [
+            {
+                id: 1,
+                title: "Monocrystalline PERC vs N-Type TOPCon Panels",
+                category: "Solar Panels",
+                image: "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=600",
+                content: "N-Type TOPCon solar panels deliver superior efficiency ratings (up to 22.5%) and lower temperature coefficients, making them ideal for high-temperature tropical regions."
+            },
+            {
+                id: 2,
+                title: "Hybrid Inverter vs On-Grid Systems Explained",
+                category: "Inverters",
+                image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600",
+                content: "Hybrid inverters manage power distribution simultaneously between solar modules, utility grid, and battery banks, ensuring zero downtime during power outages."
+            },
+            {
+                id: 3,
+                title: "LiFePO4 Lithium vs Gel Batteries for Solar",
+                category: "Batteries",
+                image: "https://images.unsplash.com/photo-1558441719-6705166e2375?w=600",
+                content: "Lithium Iron Phosphate (LiFePO4) batteries offer 6000+ deep discharge cycles at 80% DOD, offering massive long-term financial savings over lead-acid variants."
+            },
+            {
+                id: 4,
+                title: "DC Cable Sizing & Protection Circuit Breakers (SPD/MCB)",
+                category: "Protection",
+                image: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?w=600",
+                content: "Using high-grade 4mm² or 6mm² copper cables keeps system voltage drop below 2%. Always install proper DC Surge Protection Devices (SPD) and MCBs."
+            }
+        ];
+
+        let appliances = [
+            { id: 1, name: "Ceiling Fan", watt: 75, qty: 4, hours: 8 },
+            { id: 2, name: "LED Bulbs", watt: 12, qty: 10, hours: 6 }
+        ];
+
+        // Initialization
+        document.addEventListener("DOMContentLoaded", () => {
+            renderArticles('All');
+            renderAppliances();
+        });
+
+        // Tab Switcher Control
+        function switchTab(tab) {
+            const isArticles = tab === 'articles';
+            
+            document.getElementById('section-articles').classList.toggle('hidden', !isArticles);
+            document.getElementById('section-calculator').classList.toggle('hidden', isArticles);
+
+            // Desktop Nav Styles
+            document.getElementById('nav-articles').className = isArticles
+                ? 'px-5 py-2.5 rounded-xl text-sm font-bold transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 flex items-center gap-2'
+                : 'px-5 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:text-amber-400 hover:bg-slate-900 transition-all flex items-center gap-2';
+
+            document.getElementById('nav-calculator').className = !isArticles
+                ? 'px-5 py-2.5 rounded-xl text-sm font-bold transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 flex items-center gap-2'
+                : 'px-5 py-2.5 rounded-xl text-sm font-bold text-slate-300 hover:text-amber-400 hover:bg-slate-900 transition-all flex items-center gap-2';
+
+            // Mobile Nav Styles
+            document.getElementById('mob-nav-articles').className = isArticles
+                ? 'flex-1 py-3 text-center text-xs font-bold bg-amber-500 text-slate-950 transition-all flex items-center justify-center gap-2'
+                : 'flex-1 py-3 text-center text-xs font-bold text-slate-300 hover:text-amber-400 transition-all flex items-center justify-center gap-2';
+
+            document.getElementById('mob-nav-calculator').className = !isArticles
+                ? 'flex-1 py-3 text-center text-xs font-bold bg-amber-500 text-slate-950 transition-all flex items-center justify-center gap-2'
+                : 'flex-1 py-3 text-center text-xs font-bold text-slate-300 hover:text-amber-400 transition-all flex items-center justify-center gap-2';
+        }
+
+        // Render Articles Grid
+        function renderArticles(cat) {
+            const grid = document.getElementById('articlesGrid');
+            grid.innerHTML = '';
+            const filtered = cat === 'All' ? articles : articles.filter(a => a.category === cat);
+
+      
